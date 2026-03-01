@@ -8,16 +8,13 @@
 </head>
 <body>
 
-  <div class="top-bar">Tag/Follow @acigirlboutique on Facebook, Instagram, & Tiktok</div>
+  <div class="top-bar">Tag/Follow @acigirlboutique on facebook, instagram, & tiktok</div>
 
   <header class="header-main" id="mainHeader">
     <div class="logo"><a href="index.html" style="text-decoration: none; color: inherit;">Aci Girl Boutique</a></div>
     <ul class="nav-links">
       <li><a href="index.html">Home</a></li>
-      <li><a href="Scrunchies.html">Scrunchies</a></li>
-      <li><a href="CCICCIBOORICCI.html">CCICCIBOORICCI</a></li>
-      <li><a href="ChloesVersion.html">Chloe's Version</a></li>
-      <li><a href="Collections.html">Collections</a></li>
+      <li><a href="items.html">Items</a> </li>
       <li><a href="Contact.html">Contact</a></li>
     </ul>
     
@@ -205,7 +202,7 @@
             <div class="img-wrapper" style="flex: 1;">
               <img src="https://acigirlboutique.com/cdn/shop/files/D150C7EA-AAB4-4C83-A57A-E33273CF4935.jpg?v=1729163393&width=360" alt="Keychain">
             </div>
-            <h3 class="product-title">CCICCIBOORICCI MOCHI PREMIUM KEYCHAIN </h3>
+            <h3 class="product-title">CCICCIBOORICCI MOCHI PREMIUM KEYCHAIN</h3>
             <p class="product-price">₱250.00 PHP</p>
           </a>
         </div>
@@ -488,14 +485,3 @@
   <script src="Js/script.js"></script>
 </body>
 </html>
-
-<script type="module" src="../shared/scripts/supabase.js"></script>
-
-<script type="module">
-        import { supabase } from '../shared/scripts/supabase.js'
-        window.addEventListener('DOMContentLoaded', async () => {
-                console.log("DOM is ready")
-                const { data, error } = await supabase.from('Test').select('*')
-                console.log(data)
-        })
-</script>
