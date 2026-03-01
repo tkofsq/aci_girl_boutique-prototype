@@ -589,3 +589,39 @@ textarea.form-input {
 .login-container button { width:90%; padding:12px; margin-top:10px; border-radius:6px; border:none; background-color:#333; color:#fff; cursor:pointer; transition:0.2s; }
 .login-container button:hover { background-color:#555; }
 .error { color:red; margin-top:10px; }
+
+/*
+FOR QR CODE ELEMENTS
+*/
+.qr-card {
+  background: #ffffff;
+  padding: 20px;
+  border-radius: 14px;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  width: 280px;
+}
+
+.qr-title {
+  font-size: 16px;
+  font-weight: bold;
+  margin-bottom: 12px;
+}
+
+.qr-ph {
+  width: 200px;
+  aspect-ratio: 1 / 1;
+  object-fit: contain;
+  image-rendering: crisp-edges;
+  image-rendering: pixelated;
+  padding: 12px;
+  background: white;
+  border-radius: 8px;
+}
+
+.qr-caption {
+  margin-top: 10px;
+  font-size: 14px;
+  color: #555;
+}
+
