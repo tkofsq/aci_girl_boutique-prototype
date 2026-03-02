@@ -1770,7 +1770,7 @@ textarea.form-input {
 }
 
 .dashboard-table th {
-  padding: 15px 20px;
+  padding: 15px 55px;
   text-align: left;
   font-weight: 600;
   color: var(--text-main);
