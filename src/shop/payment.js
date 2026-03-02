@@ -1,46 +1,54 @@
 import { supabase } from '../shared/scripts/supabase.js'
 
 window.addEventListener('DOMContentLoaded', async () => {
-        window.checkout = async(reference, name, phone, address) => {
-                let basket = JSON.parse(localStorage.getItem('basket')) || []
-                if(basket.length == 0) { alert("You ordered nothing..."); return; }
-                const order = basket.map(item => ({
-                        id: item.id,
-                        qty: item.quantity
-                }))
-                
-                try {
-                        const { data, error } = await supabase.rpc('process_order', {
-                                p_reference: reference,
-                                p_phone: phone,
-                                p_name: name,
-                                p_address: address,
-                                p_order: order
-                        })
-                        if(error) {
-                                console.error("Order Error:", error.message)
-                                alert(`Checkout failed: ${error.message}`);
-                                return;
-                        }
-                        localStorage.setItem("basket", null)
-                        alert("Payment submitted! Your order is pending verification.");
-                } catch(err) {
-                        console.error("Unexpected error:", err)
-                        alert("An unexpected error occurred. Please try again.")
-                }
-        }
+        window.checkout = async (ref, ph, name, addr, orderData) => {
+            if (!orderData || orderData.length === 0) {
+                return alert("Error: Could not retrieve basket data.");
+            }
+    
+            const { error } = await supabase.rpc('process_order', {
+                p_reference: ref,
+                p_phone: ph,
+                p_name: name,
+                p_address: addr,
+                p_order: orderData 
+            });
+    
+            if (error) {
+                alert("Checkout failed: " + error.message);
+            } else {
+                alert("Order successful!");
+                localStorage.removeItem('basket');
+                window.location.reload();
+            }
+        };
 })
 
-window.getFullBasket = () => {
-    const raw = JSON.parse(localStorage.getItem('basket')) || [];
-    // Assuming 'inventoryData' is your global array from the Supabase fetch
-    return raw.map(item => {
-        const info = (window.inventoryData || []).find(i => i.id == item.id);
+window.getLatestBasketData = async () => {
+    const rawBasket = JSON.parse(localStorage.getItem('basket')) || [];
+    if (rawBasket.length === 0) return [];
+
+    const ids = rawBasket.map(item => item.id);
+
+    // Fetch only the items currently in the basket
+    const { data: items, error } = await supabase
+        .from('Inventory')
+        .select('id, name, final')
+        .in('id', ids);
+
+    if (error) {
+        console.error("Fetch error:", error.message);
+        return [];
+    }
+
+    // Merge the fetched details with the quantities from localStorage
+    return rawBasket.map(cartItem => {
+        const dbItem = items.find(i => i.id === cartItem.id);
         return {
-            id: Number(item.id),
-            name: info ? info.name : "Unknown",
-            qty: Number(item.quantity),
-            final: info ? Number(info.final) : 0
+            id: Number(cartItem.id),
+            name: dbItem ? dbItem.name : "Unknown",
+            qty: Number(cartItem.quantity),
+            final: dbItem ? Number(dbItem.final) : 0
         };
     });
 };
