@@ -44,7 +44,7 @@
 
     <!-- Dashboard Header -->
     <div class="dashboard-header">
-      <h1>Dashboard</h1>
+      <h1>Dashboard  <a style="color:rgb(255, 196, 0);cursor:pointer;" onclick="refetch()">⟳</a></h1>
     </div>
 
     <!-- Tabs -->
@@ -69,7 +69,7 @@
             <th>Action</th>
           </tr>
         </thead>
-        <tbody>
+        <tbody id="tsls">
           <tr>
             <td>-</td>
             <td>-</td>
@@ -94,7 +94,10 @@
 
     <!-- Inventory Tab -->
     <div id="inventory" class="tab-content" style="display: none;">
-      <div class="tab-title">Product Inventory</div>
+      <div class="tab-title">Product Inventory
+        <button onclick="updateChanges()">Update Changes</button>
+        <button >Add New Row</button>
+      </div>
       <table class="dashboard-table">
         <thead>
           <tr>
@@ -102,25 +105,14 @@
             <th>Name</th>
             <th>Category</th>
             <th>Status</th>
-            <th>Price</th>
             <th>Quantity</th>
+            <th>Price</th>
             <th>Discount</th>
             <th>Final Price</th>
             <th>Action</th>
           </tr>
         </thead>
-        <tbody>
-          <tr>
-            <td>-</td>
-            <td>-</td>
-            <td>-</td>
-            <td>-</td>
-            <td>-</td>
-            <td>-</td>
-            <td>-</td>
-            <td>-</td>
-            <td>-</td>
-          </tr>
+        <tbody id="tinv">
         </tbody>
       </table>
     </div>
