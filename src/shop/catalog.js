@@ -1,23 +1,52 @@
 import { supabase } from '../shared/scripts/supabase.js'
 
 window.addEventListener('DOMContentLoaded', async () => {
-        let catalog = JSON.parse(localStorage.getItem("catalog"))
+        
+        
+        
+        let refetch = false
+        let refresh = JSON.parse(localStorage.getItem("refresh")) || Date.now()
+        let catalog = JSON.parse(localStorage.getItem("catalog")) || [[]]
         let data, error;
+        if(Date.now() - refresh >= 24 * 60 * 60 * 1000) {
+                localStorage.setItem("refresh", JSON.stringify(refresh))
+                refetch = true
+        }
+        
+        if(refetch) ({ data, error } = await supabase.from('Inventory').select('*'))
+        
+        
+        
+        
+        
+        
+        
+        /*
+        let catalog = JSON.parse(localStorage.getItem("catalog"))
+        let data = null, error = null;
         if(!catalog) {
                 catalog = [[]]
         }
         
         ({ data, error } = await supabase.from('Inventory').select('*'))
+        */
+        
+        
+        
+        
+        
+        
+        
+        
         if(error) console.error("Order Error:", error.message)
         else {
-                for(let i = 0, o = 0; i < data.length; i += 4*3, o++) {
+                if(data) for(let i = 0, o = 0; i < data.length; i += 4*3, o++) {
                         catalog[o] = data.slice(i, i+12)
                 }
                 localStorage.setItem("catalog", JSON.stringify(catalog))
                 
                 let pgidx = localStorage.getItem("pgidx") || 1
                 catalog.forEach((page, pagei) => {
-                        console.log(pagei,page)
                         const _page = document.createElement("div")
                         _page.id = `invpg${pagei}`
                         _page.className = `grid-${pagei+1==pgidx?5:0}`

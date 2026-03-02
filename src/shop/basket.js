@@ -1,22 +1,16 @@
-/*
-const addToBasket = (_) => {
-        let basket = JSON.parse(localStorage.getItem("basket")) || []
-        
-        basket.push({ id: _ })
-        
-        localStorage.setItem("basket", JSON.stringify(basket))
-}
-*/
-
-// bskct
-
-/*
 import { supabase } from '../shared/scripts/supabase.js'
 
 window.addEventListener('DOMContentLoaded', async () => {
+        let refetch = false
+        let refresh = JSON.parse(localStorage.getItem("refresh")) || Date.now()
+        if(Date.now() - refresh >= 86400000) {
+                localStorage.setItem("refresh", JSON.stringify(Date.now()))
+                refetch = true
+        }
+        
         let catalog = JSON.parse(localStorage.getItem("catalog"))
         let data, error;
-        if(!catalog) {
+        if(!catalog || refetch) {
                 ({ data, error } = await supabase.from('Inventory').select('*'))
                 catalog = [[]]
         }
@@ -52,4 +46,3 @@ window.addEventListener('DOMContentLoaded', async () => {
                 })
         }
 })
-*/
