@@ -13,14 +13,12 @@
   <div class="top-bar">Tag/Follow @acigirlboutique on facebook, instagram, & tiktok</div>
 
   <header class="header-main" id="mainHeader">
-    <div class="logo"><a href="index.html" style="text-decoration: none; color: inherit;">Aci Girl Boutique</a></div>
+    <div class="logo"><a href="/src/shop/home.html" style="text-decoration: none; color: inherit;">Aci Girl Boutique</a></div>
     <ul class="nav-links">
-      <li><a href="index.html">Home</a></li>
-      <li><a href="Scrunchies.html">Scrunchies</a></li>
-      <li><a href="CCICCIBOORICCI.html">CCICCIBOORICCI</a></li>
-      <li><a href="ChloesVersion.html">Chloe's Version</a></li>
-      <li><a href="Collections.html">Collections</a></li>
-      <li><a href="Contact.html">Contact</a></li>
+      <li><a href="/src/shop/home.html">Home</a></li>
+      <li><a href="/src/shop/catalog.html">Items</a></li>
+      <li><a href="/src/admin/dashboard.html">Dashboard</a></li>
+      <li><a href="/src/shop/payment.html">Contact</a></li>
     </ul>
 
     <div class="header-icons" style="position: relative;">
@@ -43,10 +41,76 @@
       </a>
     </div>
   </header>
+
+   <div id="bskct"></div>
   
-  <div id="bskct">
-    
+  <!-- ============ CART PAGE ============ -->
+  <div class="cart-container">
+    <div class="cart-header">
+      <h1>Your Cart</h1>
+      <p id="cart-items-count"></p>
+    </div>
+
+    <div class="cart-content">
+      <!-- Cart Items -->
+      <div class="cart-items">
+        
+        <!-- Select All Checkbox -->
+        <div class="cart-select-controls">
+          <input type="checkbox" id="selectAllCheckbox" class="select-all-checkbox">
+          <label for="selectAllCheckbox">Select All</label>
+        </div>
+
+        <!-- Item 1 -->
+        <div class="cart-item">
+          <input type="checkbox" class="cart-item-checkbox" checked>
+          <div class="cart-item-image">
+            <img src="https://acigirlboutique.com/cdn/shop/files/ED509E1F-C2F2-4D43-A017-B5DF3904876C.jpg?v=1729088231&width=300" alt="Product">
+          </div>
+          <div class="cart-item-details">
+            <div class="cart-item-title">CCICCIBOORICCI Meowy KittyMas Stickers</div>
+            <div class="cart-item-category">Stickers</div>
+            <div class="cart-item-price">
+              <span class="price-current">₱50.00</span>
+              <span class="price-original">(₱60.00)</span>
+            </div>
+            <div class="cart-item-quantity">
+              <button class="quantity-btn">−</button>
+              <input type="number" class="quantity-input" value="1" readonly>
+              <button class="quantity-btn">+</button>
+            </div>
+          </div>
+          <button class="cart-item-remove">Remove</button>
+        </div>
+
+      
+      </div>
+
+      <!-- Cart Summary -->
+      <div class="cart-summary">
+        <div class="summary-title">Order Summary</div>
+
+        <div class="summary-row">
+          <label>Subtotal:</label>
+          <span class="value">₱50.00</span>
+        </div>
+
+        <div class="summary-row">
+          <label>Discount:</label>
+          <span class="value">-₱60.00</span>
+        </div>
+
+        <div class="summary-row total">
+          <label>Total:</label>
+          <span class="value">₱50.00</span>
+        </div>
+
+        <button class="checkout-btn">Proceed to Checkout</button>
+        <button class="continue-shopping" onclick="window.location.href='index.html'">Continue Shopping</button>
+      </div>
+    </div>
   </div>
+  <!-- ============ END CART PAGE ============ -->
   
   <footer class="site-footer reveal-on-scroll">
     <h2>Aci Girl Boutique x HUB: Make Lab</h2>
@@ -117,6 +181,28 @@
   </button>
 
   <script src="Js/script.js"></script>
+
+  <script>
+    // Select All functionality
+    const selectAllCheckbox = document.getElementById('selectAllCheckbox');
+    const itemCheckboxes = document.querySelectorAll('.cart-item-checkbox');
+
+    selectAllCheckbox.addEventListener('change', function() {
+      itemCheckboxes.forEach(checkbox => {
+        checkbox.checked = this.checked;
+      });
+    });
+
+    // Update Select All checkbox when individual items change
+    itemCheckboxes.forEach(checkbox => {
+      checkbox.addEventListener('change', function() {
+        const allChecked = Array.from(itemCheckboxes).every(cb => cb.checked);
+        const someChecked = Array.from(itemCheckboxes).some(cb => cb.checked);
+        selectAllCheckbox.checked = allChecked;
+        selectAllCheckbox.indeterminate = someChecked && !allChecked;
+      });
+    });
+  </script>
 </body>
 
 </html>
