@@ -32,24 +32,27 @@ window.refetch = async() => {
   const inv = document.getElementById("tinv");
   const { data, error } = await supabase.from('Inventory').select('*');
   if(error) return console.error("error:",error);
-  else data.forEach((item) => {
-    inv.innerHTML +=
-    `
-    <tr id="tr${item.id}">
-      <td data-field="image" onclick="handleImageClick(${item.id})"><img width="100px" height="100px" alt="${item.name}" src="${item.image}"></td>
-      <td contenteditable="true" data-field="name">${item.name}</td>
-      <td contenteditable="true" data-field="category">${item.category}</td>
-      <td contenteditable="true" data-field="status">${item.status}</td>
-      <td contenteditable="true" data-field="quantity">${item.quantity}</td>
-      <td contenteditable="true" data-field="price">${item.price}</td>
-      <td contenteditable="true" data-field="discount">${item.discount}</td>
-      <td>${item.final}</td>
-      <td>
-        <button>delete</button>
-      </td>
-    </tr>
-    `
-  })
+  else {
+    inv.innerHTML = "";
+    data.forEach((item) => {
+      inv.innerHTML +=
+      `
+      <tr id="tr${item.id}">
+        <td data-field="image" onclick="handleImageClick(${item.id})"><img width="100px" height="100px" alt="${item.name}" src="${item.image}"></td>
+        <td contenteditable="true" data-field="name">${item.name}</td>
+        <td contenteditable="true" data-field="category">${item.category}</td>
+        <td contenteditable="true" data-field="status">${item.status}</td>
+        <td contenteditable="true" data-field="quantity">${item.quantity}</td>
+        <td contenteditable="true" data-field="price">${item.price}</td>
+        <td contenteditable="true" data-field="discount">${item.discount}</td>
+        <td>${item.final}</td>
+        <td>
+          <button>delete</button>
+        </td>
+      </tr>
+      `
+    })
+  }
 }
 
 document.querySelectorAll('[data-field="image"]').forEach(cell => {
