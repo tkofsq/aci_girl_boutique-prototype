@@ -1,118 +1,164 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Dashboard - Aci Girl Boutique</title>
-  <link rel="stylesheet" href="/src/shared/styles/theme.css">
-  <style>
-    /* Dashboard specific overrides */
-    
-  </style>
+  <link rel="stylesheet" href="../shared/styles/theme.css">
 </head>
+
 <body>
 
   <!-- Top Bar -->
   <div class="top-bar">
-    Tag/Follow @acigirlboutique on Facebook, Instagram, & TikTok
+    Tag/Follow @acigirlboutique on facebook, instagram, & tiktok
   </div>
 
   <!-- Header -->
   <header class="header-main" id="mainHeader">
     <div class="logo">
-      <a href="index.html" style="text-decoration:none;color:inherit;">
+      <a href="index.html" style="text-decoration: none; color: inherit;">
         Aci Girl Boutique
       </a>
     </div>
     <ul class="nav-links">
-      <li><a href="/src/shop/home.html">Home</a></li>
+      <li><a href="index.html">Home</a></li>
       <li><a href="items.html">Items</a></li>
       <li><a href="Contact.html">Contact</a></li>
-      <li><a href="/src/admin/dashboard.html" class="active">Dashboard</a></li>
+      <li><a href="dashboard.html" class="active">Dashboard</a></li>
     </ul>
   </header>
 
-  <!-- Login Form -->
+  <!-- Login Form (visible before authentication) -->
   <div class="login-container" id="loginContainer">
-    <h2>Login</h2>
-    <input type="text" id="username" placeholder="Username">
-    <input type="password" id="password" placeholder="Password">
-    <button id="loginBtn">Login</button>
+    <h2>Admin Login</h2>
+    <input type="text" id="username" placeholder="Username" class="form-input">
+    <input type="password" id="password" placeholder="Password" class="form-input">
+    <button id="loginBtn" class="btn btn-solid-dark">Login</button>
     <p class="error" id="loginError"></p>
   </div>
 
-  <!-- Dashboard Tabs (buttons visible after login) -->
-<div class="tabs" id="tabsContainer" style="display:none;">
-  <button class="active" data-tab="diagnostics">Diagnostics</button>
-  <button data-tab="inventory">Inventory</button>
-</div>
+  <!-- Dashboard Container (visible after login) -->
+  <div class="dashboard-container" id="dashboardContent" style="display: none;">
 
-  <!-- Tab Contents -->
-<div style="margin-left: 10%; margin-right: 10%;"id="dashboardContent" style="display:none;">
-  <div id="diagnostics" class="tab-content" style="display:none;">
-    <table>
-      <thead>
-      <tr>
-        <th>Reference Number</th>
-        <th>Contact Number</th>
-        <th>Customer Name</th>
-        <th>Address</th>
-        <th>Date</th>
-        <th>Product</th>
-        <th>Order</th>
-        <th>Total</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-      </tr>
-    </tbody>
-  </table>
-    </table>
-  </div>
+    <!-- Dashboard Header -->
+    <div class="dashboard-header">
+      <h1>Dashboard</h1>
+    </div>
 
-  <div id="inventory" class="tab-content" style="display:none;">
-    <table>
-      <thead>
+    <!-- Tabs -->
+    <div class="tabs" id="tabsContainer">
+      <button class="tab-btn active" data-tab="diagnostics">Diagnostics</button>
+      <button class="tab-btn" data-tab="inventory">Inventory</button>
+    </div>
+
+    <!-- Diagnostics Tab -->
+    <div id="diagnostics" class="tab-content active" style="display: block;">
+      <div class="tab-title">Diagnostics</div>
+      <table class="dashboard-table">
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Phone #</th>
+            <th>Reference No.</th>
+            <th>Date</th>
+            <th>Total</th>
+            <th>Address</th>
+            <th>Order Status</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>-</td>
+            <td>-</td>
+            <td>-</td>
+            <td>-</td>
+            <td>-</td>
+            <td>-</td>
+            <td>
+              <a href="">-</a>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- Inventory Tab -->
+    <div id="inventory" class="tab-content" style="display: none;">
+      <div class="tab-title">Product Inventory</div>
+      <table class="dashboard-table">
+        <thead>
           <tr>
             <th>Image</th>
             <th>Name</th>
-            <th>Price</th>
-            <th>Discount</th>
-            <th>Quantity</th>
             <th>Category</th>
             <th>Status</th>
-            <th>Final</th>
+            <th>Price</th>
+            <th>Quantity</th>
+            <th>Discount</th>
+            <th>Final Price</th>
             <th>Action</th>
           </tr>
         </thead>
         <tbody>
           <tr>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
+            <td>-</td>
+            <td>-</td>
+            <td>-</td>
+            <td>-</td>
+            <td>-</td>
+            <td>-</td>
+            <td>-</td>
+            <td>-</td>
+            <td>-</td>
           </tr>
         </tbody>
-    </table>
-  </div>
-</div>
+      </table>
+    </div>
 
-  </section>
+  </div>
+
+  <!-- Footer -->
+  <footer class="site-footer reveal-on-scroll">
+    <h2>Aci Girl Boutique x HUB: Make Lab</h2>
+    <p>Store Hours: Monday-Thursday: 10am-6pm & Fri-Sun: 10am-7pm</p>
+    <p>Space01 HUB Make Lab, First United Bldg. 413 Escolta, Manila</p>
+    <p class="footer-promo">Follow @acigirlboutique to get the latest updates, promos, & POP-UP Shopping Sched!</p>
+
+    <div class="social-icons">
+      <a href="https://www.facebook.com/acigirlboutique" target="_blank">
+        <svg viewBox="0 0 24 24">
+          <path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z" />
+        </svg>
+      </a>
+      <a href="https://www.instagram.com/acigirlboutique" target="_blank">
+        <svg viewBox="0 0 24 24">
+          <path
+            d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z" />
+        </svg>
+      </a>
+      <a href="https://www.tiktok.com/@acigirlboutique" target="_blank">
+        <svg viewBox="0 0 24 24">
+          <path
+            d="M19.59 6.69a4.83 4.83 0 01-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 01-5.2 1.74 2.89 2.89 0 012.31-4.64 2.93 2.93 0 01.88.13V9.4a6.84 6.84 0 00-1-.05A6.33 6.33 0 005 20.1a6.34 6.34 0 0010.86-4.43v-7a8.16 8.16 0 004.77 1.52v-3.4a4.85 4.85 0 01-1.04-.1z" />
+        </svg>
+      </a>
+      <a href="https://www.youtube.com/acigirltv" target="_blank">
+        <svg viewBox="0 0 24 24">
+          <path
+            d="M21.582 6.186a2.67 2.67 0 00-1.884-1.898C17.962 3.8 12 3.8 12 3.8s-5.962 0-7.698.488a2.67 2.67 0 00-1.884 1.898C1.942 7.935 1.942 12 1.942 12s0 4.065.476 5.814a2.67 2.67 0 001.884 1.898c1.736.488 7.698.488 7.698.488s5.962 0 7.698-.488a2.67 2.67 0 001.884-1.898c.476-1.749.476-5.814.476-5.814s0-4.065-.476-5.814zM9.953 15.228V8.77l6.505 3.23-6.505 3.228z" />
+        </svg>
+      </a>
+    </div>
+
+    <div class="footer-bottom">
+      <p>&copy; 2026, Aci Girl Boutique</p>
+    </div>
+  </footer>
 
   <script src="dashboard.js"></script>
 
 </body>
+
 </html>
