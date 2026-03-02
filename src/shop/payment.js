@@ -1,9 +1,9 @@
 import { supabase } from '../shared/scripts/supabase.js'
 
 window.addEventListener('DOMContentLoaded', async () => {
-        const checkout = async(reference, name, phone, address) => {
-                let basket = JSON.parse(localStorage.getItem('basket')) || null
-                if(!basket) { alert("You ordered nothing..."); return; }
+        window.checkout = async(reference, name, phone, address) => {
+                let basket = JSON.parse(localStorage.getItem('basket')) || []
+                if(basket.length == 0) { alert("You ordered nothing..."); return; }
                 const order = basket.map(item => ({
                         id: item.id,
                         qty: item.qty
