@@ -1743,11 +1743,82 @@ textarea.form-input {
 }
 
 .tab-title {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 25px;
   font-family: var(--font-heading);
   font-size: 1.5rem;
   font-weight: normal;
-  margin-bottom: 25px;
   color: var(--text-main);
+  width: 100%;
+}
+
+.tab-title-buttons {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+
+.tab-title button,
+.tab-title-buttons button {
+  padding: 10px 20px;
+  background: var(--bg-dark);
+  color: white;
+  border: 1px solid var(--bg-dark);
+  border-radius: 4px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-family: var(--font-body);
+  white-space: nowrap;
+}
+
+.tab-title button:hover,
+.tab-title-buttons button:hover {
+  background: #333;
+  border-color: #333;
+}
+
+.tab-title button:active,
+.tab-title-buttons button:active {
+  transform: scale(0.98);
+}
+
+/* Action Buttons in Dashboard */
+.btn-action-edit,
+.btn-action-delete {
+  padding: 8px 14px;
+  border: 1px solid var(--text-main);
+  background: transparent;
+  color: var(--text-main);
+  border-radius: 4px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  font-family: var(--font-body);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  white-space: nowrap;
+}
+
+.btn-action-edit:hover {
+  background: var(--bg-dark);
+  color: white;
+  border-color: var(--bg-dark);
+}
+
+.btn-action-delete {
+  border-color: #e74c3c;
+  color: #e74c3c;
+}
+
+.btn-action-delete:hover {
+  background: #e74c3c;
+  color: white;
+  border-color: #e74c3c;
 }
 
 .tab-content {
@@ -1866,7 +1937,6 @@ textarea.form-input {
 .btn-action-small {
   padding: 5px 10px !important;
   font-size: 0.75rem !important;
-
 }
 
 .metrics {
@@ -1914,6 +1984,309 @@ textarea.form-input {
   justify-content: center;
   color: #aaa;
   font-size: 1rem;
+}
+
+/* =========================================
+   DASHBOARD MODAL & FORM STYLES
+   ========================================= */
+
+/* Modal Overlay */
+.modal-overlay {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.6);
+  z-index: 2000;
+  animation: fadeIn 0.3s ease;
+}
+
+.modal-overlay.active {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+/* Modal Box */
+.modal-box {
+  background: white;
+  border-radius: 8px;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+  max-width: 600px;
+  width: 90%;
+  max-height: 90vh;
+  overflow-y: auto;
+  animation: slideUp 0.3s ease;
+}
+
+@keyframes slideUp {
+  from { transform: translateY(30px); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+}
+
+/* Modal Header */
+.modal-header {
+  padding: 25px;
+  border-bottom: 1px solid var(--border-color);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: var(--bg-offwhite);
+}
+
+.modal-header h2 {
+  font-family: var(--font-heading);
+  font-size: 1.8rem;
+  font-weight: normal;
+  margin: 0;
+  color: var(--text-main);
+}
+
+.modal-close {
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  cursor: pointer;
+  color: #666;
+  transition: color 0.2s;
+  padding: 0;
+  width: 30px;
+  height: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.modal-close:hover {
+  color: var(--text-main);
+}
+
+/* Modal Body */
+.modal-body {
+  padding: 30px;
+}
+
+.modal-body p {
+  margin-bottom: 15px;
+  color: #555;
+  line-height: 1.6;
+  font-size: 0.95rem;
+}
+
+.modal-body strong {
+  color: var(--text-main);
+  font-weight: 600;
+}
+
+.order-items {
+  background: var(--bg-offwhite);
+  padding: 15px;
+  border-radius: 6px;
+  margin: 15px 0;
+}
+
+.order-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 0;
+  border-bottom: 1px solid var(--border-color);
+}
+
+.order-item:last-child {
+  border-bottom: none;
+}
+
+.order-item-name {
+  font-weight: 600;
+  color: var(--text-main);
+  font-size: 0.95rem;
+}
+
+.order-item-details {
+  font-size: 0.85rem;
+  color: #666;
+}
+
+/* Form Inputs */
+.form-group {
+  margin-bottom: 20px;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 8px;
+  color: var(--text-main);
+  font-weight: 600;
+  font-size: 0.9rem;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.form-group input,
+.form-group select,
+.form-group textarea {
+  width: 100%;
+  padding: 10px 12px;
+  border: 1px solid var(--border-color);
+  border-radius: 4px;
+  font-size: 0.95rem;
+  font-family: var(--font-body);
+  transition: border-color 0.2s, box-shadow 0.2s;
+  background: white;
+  color: var(--text-main);
+}
+
+.form-group input::placeholder,
+.form-group textarea::placeholder {
+  color: #999;
+}
+
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+  outline: none;
+  border-color: var(--text-main);
+  box-shadow: 0 0 0 3px rgba(34, 34, 34, 0.1);
+}
+
+.form-group textarea {
+  resize: vertical;
+  min-height: 100px;
+}
+
+/* Modal Footer */
+.modal-footer {
+  padding: 20px 30px;
+  background: var(--bg-offwhite);
+  border-top: 1px solid var(--border-color);
+  display: flex;
+  gap: 10px;
+  justify-content: flex-end;
+}
+
+.modal-footer .btn-cancel,
+.modal-footer button {
+  padding: 10px 24px;
+  border-radius: 4px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s;
+  border: 1px solid var(--text-main);
+  background: transparent;
+  color: var(--text-main);
+  font-family: var(--font-body);
+}
+
+.modal-footer .btn-cancel:hover,
+.modal-footer button:hover {
+  background: var(--text-main);
+  color: white;
+}
+
+.modal-footer .btn-primary {
+  background: var(--bg-dark);
+  color: white;
+  border-color: var(--bg-dark);
+}
+
+.modal-footer .btn-primary:hover {
+  background: #333;
+  border-color: #333;
+}
+
+/* Status Badge */
+.status-badge {
+  display: inline-block;
+  padding: 5px 10px;
+  border-radius: 4px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.status-badge.active {
+  background: #e8f5e9;
+  color: #2e7d32;
+}
+
+.status-badge.inactive {
+  background: #ffebee;
+  color: #c62828;
+}
+
+.status-badge.pending {
+  background: #fff3e0;
+  color: #e65100;
+}
+
+.status-badge.processing {
+  background: #e3f2fd;
+  color: #1565c0;
+}
+
+.status-badge.completed {
+  background: #e8f5e9;
+  color: #2e7d32;
+}
+
+/* Active Status Button */
+.btn-status.active {
+  background: var(--text-main);
+  color: white;
+  border-color: var(--text-main);
+}
+
+/* Input Fields in Table */
+.qty-input,
+.discount-input {
+  font-size: 0.9rem;
+  color: var(--text-main);
+}
+
+.qty-input:focus,
+.discount-input:focus {
+  outline: none;
+  border-color: var(--text-main);
+  box-shadow: 0 0 0 2px rgba(34, 34, 34, 0.1);
+}
+
+/* Toast Notification */
+.toast-message {
+  position: fixed;
+  bottom: 30px;
+  right: 30px;
+  background: var(--bg-dark);
+  color: white;
+  padding: 15px 25px;
+  border-radius: 4px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  animation: slideInRight 0.3s ease;
+  z-index: 3000;
+  font-size: 0.95rem;
+  font-weight: 600;
+}
+
+@keyframes slideInRight {
+  from { transform: translateX(400px); opacity: 0; }
+  to { transform: translateX(0); opacity: 1; }
+}
+
+.toast-message.success {
+  background: #27ae60;
+}
+
+.toast-message.error {
+  background: #e74c3c;
 }
 
 /* =========================================
